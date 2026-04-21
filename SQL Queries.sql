@@ -1,3 +1,8 @@
+-- Change database to Atliq Hardwares
+USE gdb023;
+
+-- 1. The list of markets in which the customer "Atliq Exclusive" operates its business in the APAC region
+
 SELECT
 		DISTINCT market
 FROM
@@ -6,7 +11,9 @@ WHERE
 		customer = "Atliq Exclusive" AND
         region = "APAC";
         
-  
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 2. What is the percentage of unique product increase in 2021 vs. 2020?
+
  WITH FY20 AS (
 				SELECT
 					COUNT(DISTINCT(product_code)) AS up_20	
@@ -14,8 +21,7 @@ WHERE
 					fact_sales_monthly
 				WHERE
 					fiscal_year = 2020
-),
-FY21 AS (
+), FY21 AS (
 				SELECT
 					COUNT(DISTINCT(product_code)) AS up_21	
 				FROM
@@ -30,6 +36,8 @@ SELECT
 FROM
 	FY20, FY21;
     
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 3. Provide a report with all the unique product counts for each segment and sort them in descending order of product counts.
 
 SELECT
 	segment,
@@ -40,8 +48,9 @@ GROUP BY
 	segment
 ORDER  BY
 	product_count DESC;
-    
-    
+        
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 4. Follow-up: Which segment had the most increase in unique products in 2021 vs 2020?
 
 WITH FY20 AS (
 				SELECT
@@ -57,8 +66,7 @@ WITH FY20 AS (
 					fiscal_year = 2020
 				GROUP BY
 					p.segment
-),
-FY21 AS (
+), FY21 AS (
 				SELECT
 					segment,
                     COUNT(DISTINCT(s.product_code)) AS seg21
@@ -86,7 +94,8 @@ ON
 	FY20.segment = FY21.segment
 ORDER BY
 	difference DESC;
-    
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 5. Get the products that have the highest and lowest manufacturing costs.    
 
 SELECT
 	c.product_code,
@@ -114,7 +123,8 @@ WHERE
 ORDER BY
 	manufacturing_cost DESC;
     
-    
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 6. Generate a report which contains the top 5 customers who received an average high pre_invoice_discount_pct for the fiscal year 2021 and in the Indian market.
 SELECT
 	d.customer_code,
     customer,
@@ -136,6 +146,8 @@ ORDER BY
 LIMIT
 	5;
     
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 7. Get the complete report of the Gross sales amount for the customer “Atliq Exclusive” for each month. This analysis helps to get an idea of low and high-performing months and take strategic decisions.
 
 WITH gross_sales_table AS (
 						SELECT
@@ -150,8 +162,7 @@ WITH gross_sales_table AS (
 						ON
 							s.product_code = p.product_code AND
 							s.fiscal_year = p.fiscal_year
-),
-customer_sort AS (
+), customer_sort AS (
 						SELECT
 							date,
                             c.customer_code,
@@ -174,32 +185,34 @@ FROM
 GROUP BY
 	month, year;
     
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 8. In which quarter of 2020 got the maximum total_sold_quantity?
 
 WITH quarter AS (
-						SELECT
-							sold_quantity,
-                            CASE
-								WHEN
-									MONTH(date) BETWEEN 09 AND 11
-								THEN
-									"Q1"
-								WHEN
-									MONTH(date) IN (12, 01, 02)
-								THEN
-									"Q2"
-								WHEN
-									MONTH(date) BETWEEN 03 AND 05
-								THEN
-									"Q3"
-								WHEN
-									MONTH(date) BETWEEN 06 AND 08
-								THEN
-									"Q4"
-							END AS Quarter
-						FROM
-							fact_sales_monthly
-						WHERE
-							fiscal_year = 2020
+				SELECT
+					sold_quantity,
+                    CASE
+						WHEN
+							MONTH(date) BETWEEN 09 AND 11
+						THEN
+							"Q1"
+						WHEN
+							MONTH(date) IN (12, 01, 02)
+						THEN
+							"Q2"
+						WHEN
+							MONTH(date) BETWEEN 03 AND 05
+						THEN
+							"Q3"
+						WHEN
+							MONTH(date) BETWEEN 06 AND 08
+						THEN
+							"Q4"
+					END AS Quarter
+				FROM
+					fact_sales_monthly
+				WHERE
+					fiscal_year = 2020
 )
 SELECT
 	Quarter,
@@ -211,6 +224,8 @@ GROUP BY
 ORDER BY
 	total_sold_quantity DESC;
     
+---------------------------------------------------------------------------------------------------------------------------------------
+-- 9. Which channel helped to bring more gross sales in the fiscal year 2021 and the percentage of contribution?
     
 WITH gross_sale_table AS (
 				SELECT
@@ -225,8 +240,7 @@ WITH gross_sale_table AS (
 					g.fiscal_year = s.fiscal_year
 				WHERE
 					g.fiscal_year = 2021
-),
-channel_table AS (
+), channel_table AS (
 				SELECT
 					channel,
 					ROUND(SUM(gross_sales_mln / 1000000), 3) AS gross_sales_mln
@@ -238,8 +252,7 @@ channel_table AS (
 					c.customer_code = gt.customer_code
 				GROUP BY
 					channel
-),
-total_sum AS (
+), total_sum AS (
 				SELECT
 					SUM(gross_sales_mln) AS SUM_
 				FROM
@@ -254,6 +267,9 @@ ORDER BY
 	percentage DESC;
     
     
+---------------------------------------------------------------------------------------------------------------------------------------
+
+-- 10. Get the Top 3 products in each division that have a high total_sold_quantity in the fiscal_year 2021?
     
 WITH product_table AS (
 					SELECT
@@ -273,8 +289,7 @@ WITH product_table AS (
 						s.product_code,
                         p.division,
                         p.product
-),
-rank_table AS (
+), rank_table AS (
 					SELECT
 						*,
                         RANK() OVER(PARTITION BY division ORDER BY total_sold_quantity DESC) AS rank_order
