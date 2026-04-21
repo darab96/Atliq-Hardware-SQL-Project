@@ -1,4 +1,4 @@
-# AtliQ Hardware — SQL Challenge: Consumer Goods Insights
+# AtliQ Hardware - SQL Challenge: Consumer Goods Insights
 
 ## 📋 Overview
 
@@ -26,7 +26,7 @@ To address this, the company decided to conduct an **SQL challenge** to better u
 
 ## 🗄️ Data Model
 
-> *(Insert Data Model image here)*
+> *![Data Model](images/data_model.png)*
 
 ---
 
@@ -50,13 +50,9 @@ source RAW_Files/atliq_hardware_db.sql
 
 This will generate AtliQ Hardware's database from the `atliq_hardware_db.sql` file.
 
-> 📸 *(Insert screenshot: Steps to connect and create database in MySQL via terminal — Ubuntu)*
-
 ---
 
 ## 🔍 Running SQL Queries
-
-### Method 1 — Using the SQL File
 
 Run all queries using MySQL terminal or MySQL Workbench.
 
@@ -66,17 +62,7 @@ Run all queries using MySQL terminal or MySQL Workbench.
 source SQL_Query.sql
 ```
 
-> 📸 *(Insert screenshot: How to run SQL_Query.sql using terminal)*
-
----
-
-### Method 2 — Using Python
-
-Use the MySQL Python library with Jupyter Notebook.
-
-Open `SQL_Query.ipynb` to see how to:
-- Connect to a MySQL database using Python
-- Run all 10 queries programmatically
+> 📸 *![SQl Query](images/sql_query.png)*
 
 ---
 
