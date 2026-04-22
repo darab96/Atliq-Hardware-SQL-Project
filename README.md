@@ -6,7 +6,7 @@
 |---|---|
 | **Domain** | Consumer Goods |
 | **Function** | Executive Management |
-| **Tools Used** | MySQL, Python, Plotly |
+| **Tools Used** | MySQL, GitHub |
 
 ## 🧩 Problem Statement
 
@@ -18,7 +18,7 @@ To address this, the company decided to conduct an **SQL challenge** to better u
 
 ## 🎯 Task
 
-- Review `ad-hoc-requests.pdf` — it contains **10 ad hoc business requests** that require data insights.
+- Review [`ad-hoc-requests.pdf`](RAW/ad-hoc-requests.pdf) — it contains **10 ad hoc business requests** that require data insights.
 - Write SQL queries to answer each of those requests.
 - Create a **presentation for top-level management** showcasing the insights.
 
@@ -48,7 +48,7 @@ Once connected successfully, run:
 source RAW_Files/atliq_hardware_db.sql
 ```
 
-This will generate AtliQ Hardware's database from the `atliq_hardware_db.sql` file.
+This will generate AtliQ Hardware's database from the [`atliq_hardware_db.sql`](RAW/atliq_hardware_db.sql) file.
 
 ---
 
@@ -70,34 +70,18 @@ source SQL_Query.sql
 
 ### Reports
 
-- `SQL_Query_Solutions.pdf` — Contains all 10 questions along with their terminal outputs.
-- `images/mysql_terminal_solutions/` — Folder containing all 10 individual query terminal output screenshots.
+- [`SQL_Query_Solutions.pdf`](SQLQuery%Solutions.pdf) — Contains all 10 questions along with their terminal outputs.
 
 ### Presentations
 
-> 📸 *(Insert sample slide image here)*
+> 📸 *![Presentation Front Page](images/presentation_1.png)*
 
 The management presentation is available in two formats:
 
 | Format | File |
 |---|---|
-| PDF | `Presentation.pdf` |
-| PowerPoint | `Presentation.pptx` |
-
-All charts and plots in the presentation were created using **Plotly**. The notebook used to generate them is `Presentation_plots.ipynb`.
-
-> **⚠️ Note:** `Presentation_plots.ipynb` is an **unrendered** notebook. The rendered version was too large for GitHub's upload limit and was therefore excluded.
-
----
-
-## 🔐 Credentials
-
-`credentials.py` stores only the MySQL root password and is used to protect it from being hardcoded in the notebooks.
-
-```python
-# credentials.py
-password = "your_mysql_root_password"
-```
+| PDF | [`Atliq Hardwares Presentation.pdf`](Atliq%Hardwares%Presentation.pdf) |
+| PowerPoint | `[`Atliq Hardwares Presentation.pptx`](Atliq%Hardwares%Presentation.pptx)` |
 
 ---
 
