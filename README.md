@@ -74,7 +74,7 @@ source SQL_Query.sql
 
 ### Presentations
 
-> 📸 *![Presentation Front Page](images/presentation_1.png)*
+> 📸 *![Presentation Front Page](images/Presentation_1.png)*
 
 The management presentation is available in two formats:
 
