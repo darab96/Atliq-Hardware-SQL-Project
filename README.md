@@ -70,7 +70,7 @@ source SQL_Query.sql
 
 ### Reports
 
-- [`SQL_Query_Solutions.pdf`](SQLQuery%Solutions.pdf) — Contains all 10 questions along with their terminal outputs.
+- [`SQL_Query_Solutions.pdf`](SQLQuery_Solutions.pdf) — Contains all 10 questions along with their terminal outputs.
 
 ### Presentations
 
@@ -80,8 +80,8 @@ The management presentation is available in two formats:
 
 | Format | File |
 |---|---|
-| PDF | [`Atliq Hardwares Presentation.pdf`](Atliq%Hardwares%Presentation.pdf) |
-| PowerPoint | `[`Atliq Hardwares Presentation.pptx`](Atliq%Hardwares%Presentation.pptx)` |
+| PDF | [`Presentation.pdf`](Presentation.pdf) |
+| PowerPoint | [`Presentation.pptx`](Presentation.pptx) |
 
 ---
 
