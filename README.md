@@ -70,7 +70,7 @@ source SQL_Query.sql
 
 ### Reports
 
-- [`SQL_Query_Solutions.pdf`](SQLQuery_Solutions.pdf) — Contains all 10 questions along with their terminal outputs.
+- [`SQL_Query_Solutions.pdf`](SQL_Query_Solutions.pdf) — Contains all 10 questions along with their terminal outputs.
 
 ### Presentations
 
